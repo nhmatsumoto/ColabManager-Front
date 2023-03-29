@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
 
 interface LoginFormData {
     username: string;
@@ -17,20 +18,26 @@ const LoginSchema = Yup.object().shape({
 const LoginPage = () => {
     
     const initialValues: LoginFormData = { username: "", password: "" };
-    const[result, setResult] = useState<any>();
+    const [cookies, setCookie] = useCookies(['token', 'refreshToken'])
 
     const handleSubmit = async (values: LoginFormData) => {
         if(values){
             const response = await axios.post("https://localhost:7199/api/auth/login", values);
-            setResult(response.data);
-            console.log(response.data)
+
+            let expires = new Date()
+            expires.setTime(expires.getTime() + (response.data.expires_in * 1000))
+
+            console.log('response',response);
+            
+            if(response.data.value.token) {
+              setCookie('token', response.data.value.token, { path: '/',  expires})
+              setCookie('refreshToken', response.data.value.refreshToken, {path: '/', expires})
+            }
         }
     };
   
     return (
         <>
-        <code>{JSON.stringify(result)}</code>
-        
         <Formik
             initialValues={initialValues}
             validationSchema={LoginSchema}
