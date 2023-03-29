@@ -10,8 +10,7 @@ interface LoginFormData {
   }
 
 const LoginSchema = Yup.object().shape({
-    email: Yup.string()
-      .required("O campo usuário é obrigatório"),
+    username: Yup.string().required("O campo usuário é obrigatório"),
     password: Yup.string().required("O campo Senha é obrigatória"),
   });
 
@@ -46,7 +45,7 @@ const LoginPage = () => {
             {({ isSubmitting, values }) => (
             <Form>
                 <div className="input-group">
-                <label htmlFor="username">Email</label>
+                <label htmlFor="username">Usuário</label>
                 <Field className="form-control" type="text" name="username" id="username" />
                 <ErrorMessage name="username" component="div" />
                 </div>
