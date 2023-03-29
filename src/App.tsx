@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import './App.css'
+import LoginPage from './pages/LoginPage'
 
 function App() {
   return (
-    <div className="App">
-      <h1> Hello World ColabManager-Front V1 </h1>
+    <div className="App container" >
+      <LoginPage />
     </div>
   )
 }
