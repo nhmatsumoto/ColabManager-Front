@@ -17,14 +17,14 @@ const HomePage = () => {
     const [{}, {}, removeCookie] = useCookies(['token', 'refreshToken'])
   
     return (
-      <>
+      <div className="container">
         <hr/>
         <h1>Home Page</h1>
         <br/>
         <button onClick={() => {
           removeCookie('token',{path:'/'});
         }}> Sair</button>
-      </>
+      </div>
     );
 }
 

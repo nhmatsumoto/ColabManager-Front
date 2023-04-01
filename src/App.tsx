@@ -1,18 +1,15 @@
 import { useCookies } from 'react-cookie'
-import './App.css'
 import HomePage from './pages/Home'
-import LoginPage from './pages/LoginPage'
+import LoginPage from './pages/Login/LoginPage'
+import './App.css'
 
 function App() {
 
-  const [cookies, setCookie] = useCookies(['token', 'refreshToken'])
-    
+  const [cookies, setCookie] = useCookies(['token', 'refreshToken'])    
 
   if(cookies.token == null || cookies.token == "null") {
     return (
-      <>
-        <LoginPage />
-      </>
+      <LoginPage />
     )
   }
 
