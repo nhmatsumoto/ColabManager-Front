@@ -2,21 +2,23 @@ import { useCookies } from 'react-cookie'
 import HomePage from './pages/Home'
 import LoginPage from './pages/Login/LoginPage'
 import './App.css'
-import { AppRoutes } from './Routes'
+import { Link } from 'react-router-dom'
 
 function App() {
 
   const [cookies, setCookie] = useCookies(['token', 'refreshToken'])    
 
-  if(cookies.token == null || cookies.token == "null" || cookies.refreshToken == null || cookies.refreshToken == "null") {
+  if(!cookies.token) {
     return (
-      <LoginPage />
+      <div className="App">
+        <Link to='/login' />
+      </div>
     )
   }
 
   return (
     <div className="App">
-      <AppRoutes/>
+      
     </div>
   )
 }

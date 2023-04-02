@@ -2,11 +2,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios, { AxiosResponse } from "axios";
 import './LoginPage.css';
-import jwt from 'jwt-decode';
 import { useState } from "react";
 import Loader from "../../components/Loader";
 import { Cookies, useCookies } from "react-cookie";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface LoginFormData {
     username: string;
@@ -26,10 +25,11 @@ const LoginSchema = Yup.object().shape({
 
 const LoginPage = () => {
     
-    const [cookies, setCookie] = useCookies(['jwt-access-token', 'jwt-refresh-token']);
+    const [cookies, setCookie, removeCookie] = useCookies(['jwt-access-token', 'jwt-refresh-token']);
     const initialValues: LoginFormData = { username: "", password: "" };
     const [user, setUser] = useState(0);
     const [loader, setLoader] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         setUser(0);
@@ -60,6 +60,7 @@ const LoginPage = () => {
                 setCookie('jwt-refresh-token', response.data.value.refreshToken, { expires: expiresDate, sameSite: 'none', secure: true, path: '/' });
                 setUser(response.data.userId);
                 setLoader(false);
+                navigate("/dashboard");
 
             } catch(error) {
 
@@ -67,8 +68,6 @@ const LoginPage = () => {
             }
         }
     };
-  
-   
 
     return (
        <>
