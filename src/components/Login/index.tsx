@@ -1,22 +1,11 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import axios, { AxiosResponse } from "axios";
-import './LoginPage.css';
 import { useState } from "react";
-import Loader from "../../components/Loader";
-import { Cookies, useCookies } from "react-cookie";
+import Loader from "../Loader";
+import { ILoginRequest } from "../../context/AuthProvider/types";
+import './index.css';
+import { useAuth } from "../../context/AuthProvider/useAuth";
 import { useNavigate } from "react-router-dom";
-
-interface LoginFormData {
-    username: string;
-    password: string;
-}
-
-interface LoginResponseData {
-    userId: number,    
-    accessToken: string,
-    refreshToken: string
-}
 
 const LoginSchema = Yup.object().shape({
     username: Yup.string().required("O campo usuário é obrigatório"),
@@ -24,49 +13,26 @@ const LoginSchema = Yup.object().shape({
 });
 
 const LoginPage = () => {
-    
-    const [cookies, setCookie, removeCookie] = useCookies(['jwt-access-token', 'jwt-refresh-token']);
-    const initialValues: LoginFormData = { username: "", password: "" };
-    const [user, setUser] = useState(0);
+
+    const initialValues: ILoginRequest = { username: "", password: "" };
     const [loader, setLoader] = useState(false);
+    const auth = useAuth();
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-        setUser(0);
-        // cookies.remove("jwt-access-token");
-    }
+    const handleSubmit = async (values: ILoginRequest) => {
 
-    const payload = (values : LoginFormData) => ({
-        username: values.username,
-        password: values.password
-    })
+        try {
+            setLoader(true);
+            await auth.authenticate(values.username, values.password)
+            setLoader(false);
+            navigate("/dashboard");
 
-    const handleSubmit = async (values: LoginFormData) => {
+        }catch (error) {
 
-        setLoader(true);
-
-        const request = payload(values);
-
-        if(request){
-
-            try {
-                const response = await axios.post<LoginResponseData, AxiosResponse<LoginResponseData, any>>('https://localhost:7199/api/auth/login', request);
-    
-                console.log("Sucesso", response.data.value.accessToken)   
-                //1 hora.
-                const expiresDate = new Date(Date.now() + 60 * 60 * 1000);
-
-                setCookie('jwt-access-token',  response.data.value.accessToken, { expires: expiresDate, sameSite: 'none', secure: true, path: '/' });
-                setCookie('jwt-refresh-token', response.data.value.refreshToken, { expires: expiresDate, sameSite: 'none', secure: true, path: '/' });
-                setUser(response.data.userId);
-                setLoader(false);
-                navigate("/dashboard");
-
-            } catch(error) {
-
-                setLoader(false);
-            }
+            console.log("DEU RUIM NO LOGIN", error.value)
+            setLoader(false);
         }
+        
     };
 
     return (

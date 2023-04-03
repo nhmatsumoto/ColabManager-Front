@@ -1,26 +1,38 @@
 import { useCookies } from 'react-cookie'
-import HomePage from './pages/Home'
-import LoginPage from './pages/Login/LoginPage'
 import './App.css'
-import { Link } from 'react-router-dom'
+import { AuthProvider } from './context/AuthProvider'
+import { BrowserRouter, createBrowserRouter, RouterProvider } from "react-router-dom";
+import Dashboard from './pages/dashboard/Dashboard';
+import { AppRoute } from './Route';
+import ErrorPage from './error-page';
+import LoginPage from './components/Login';
+import ProtectedLayout from './components/ProtectedLayout';
 
 function App() {
 
-  const [cookies, setCookie] = useCookies(['token', 'refreshToken'])    
-
-  if(!cookies.token) {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <AppRoute />,
+      errorElement: <ErrorPage />
+    },
+    {
+      path: "/login",
+      element: <LoginPage />
+    },
+    {
+      path: "/dashboard",
+      element: <ProtectedLayout children={<Dashboard />} />
+    },
+  ]);
+  
     return (
       <div className="App">
-        <Link to='/login' />
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>      
       </div>
     )
-  }
-
-  return (
-    <div className="App">
-      
-    </div>
-  )
 }
 
 export default App

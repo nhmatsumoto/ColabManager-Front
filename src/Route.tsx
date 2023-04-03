@@ -3,49 +3,11 @@ import {
     Routes,
     Route
 } from "react-router-dom"
-import LoginPage from './pages/Login/LoginPage'
-import RegisterPage from "./pages/Register/RegisterPage"
+import LoginPage from './components/Login'
+import RegisterPage from "./pages/register/RegisterPage"
 
 export function AppRoute(){
-    return (
-        <>
-      <div id="sidebar">
-        <h1>React Router Contacts</h1>
-        <div>
-          <form id="search-form" role="search">
-            <input
-              id="q"
-              aria-label="Search contacts"
-              placeholder="Search"
-              type="search"
-              name="q"
-            />
-            <div
-              id="search-spinner"
-              aria-hidden
-              hidden={true}
-            />
-            <div
-              className="sr-only"
-              aria-live="polite"
-            ></div>
-          </form>
-          <form method="post">
-            <button type="submit">New</button>
-          </form>
-        </div>
-        <nav>
-          <ul>
-            <li>
-              <a href={`/contacts/1`}>Your Name</a>
-            </li>
-            <li>
-              <a href={`/contacts/2`}>Your Friend</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div id="detail"></div>
-    </>
-    )
+   // navbar
+   
+    return (<LoginPage />)
 }
