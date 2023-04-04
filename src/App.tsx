@@ -6,7 +6,6 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import ErrorPage from "./error-page";
 import LoginPage from "./components/Login";
 import ProtectedLayout from "./components/ProtectedLayout";
-import "./App.css";
 
 function App() {
 

@@ -3,7 +3,6 @@ import * as Yup from "yup";
 import { useState } from "react";
 import Loader from "../Loader";
 import { ILoginRequest } from "../../context/AuthProvider/types";
-import './index.css';
 import { useAuth } from "../../context/AuthProvider/useAuth";
 import { useNavigate } from "react-router-dom";
 

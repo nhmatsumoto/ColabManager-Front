@@ -5,7 +5,7 @@ const ProtectedLayout = ({ children } : { children : JSX.Element}) => {
 
     const auth = useAuth();
 
-    if(!auth.userId) {
+    if(!auth.accessToken) {
         return <h1>SEM ACESSO</h1>;
     }
 }
