@@ -1,4 +1,3 @@
-import { Cookies, useCookies } from "react-cookie";
 import { Api } from "../../services/api";
 
 
@@ -17,18 +16,18 @@ export function setUserCookies(accessToken: string, refreshToken: string) {
 
 export function getUserCookies(){
 
-    const cookies = new Cookies();
+    // const cookies = new Cookies();
 
-    const json = cookies.get("jwt-access-token");
-    // useCookies(['jwt-access-token', 'jwt-refresh-token']);
+    // const json = cookies.get("jwt-access-token");
+    // // useCookies(['jwt-access-token', 'jwt-refresh-token']);
 
-    if(!json){  
-        return null;
-    }
+    // if(!json){  
+    //     return null;
+    // }
 
-    const user = JSON.parse(json);
-
-    return user ?? null;
+    // const user = JSON.parse('a');
+    // return user ?? null;
+    return null;
 }
 
 export async function LoginRequest(username: string, password: string){

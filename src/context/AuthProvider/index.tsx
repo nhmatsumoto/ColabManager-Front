@@ -1,6 +1,6 @@
-import { createContext, useEffect, useState } from 'react';
-import { IContext, IUser, IAuthProvider } from './types';
-import { LoginRequest, getUserCookies, setUserCookies } from './utils';
+import { createContext, useEffect, useState } from "react";
+import { IContext, IUser, IAuthProvider } from "./types";
+import { LoginRequest, getUserCookies, setUserCookies } from "./utils";
 
 export const AuthContext = createContext<IContext>({} as IContext);
 

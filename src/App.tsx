@@ -1,19 +1,19 @@
-import { useCookies } from 'react-cookie'
-import './App.css'
-import { AuthProvider } from './context/AuthProvider'
-import { BrowserRouter, createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dashboard from './pages/dashboard/Dashboard';
-import { AppRoute } from './Route';
-import ErrorPage from './error-page';
-import LoginPage from './components/Login';
-import ProtectedLayout from './components/ProtectedLayout';
+
+
+import { AuthProvider } from "./context/AuthProvider"
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Dashboard from "./pages/dashboard/Dashboard";
+import ErrorPage from "./error-page";
+import LoginPage from "./components/Login";
+import ProtectedLayout from "./components/ProtectedLayout";
+import "./App.css";
 
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <AppRoute />,
+      element: <LoginPage />,
       errorElement: <ErrorPage />
     },
     {
