@@ -16,7 +16,9 @@ const LoginPage = () => {
     const initialValues: ILoginRequest = { username: "", password: "" };
     const [loader, setLoader] = useState(false);
     const auth = useAuth();
-    const navigate = useNavigate();
+
+    // const navigate = useNavigate();
+    // navigate("/dashboard");
 
     const handleSubmit = async (values: ILoginRequest) => {
 
@@ -24,7 +26,6 @@ const LoginPage = () => {
             setLoader(true);
             await auth.authenticate(values.username, values.password)
             setLoader(false);
-            navigate("/dashboard");
 
         }catch (error) {
 
