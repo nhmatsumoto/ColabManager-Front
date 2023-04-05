@@ -1,12 +1,13 @@
 
-import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Link, NavLink } from "react-router-dom";
 import Dashboard from "./pages/dashboard";
 import ErrorPage from "./error-page";
 import LoginPage from "./components/login";
 import { AuthProvider } from "./contexts/auth/AuthProvider";
 import { RequireAuth } from "./contexts/auth/RequireAuth";
 import { HomePage } from "./pages/home/index";
-
+import { useContext } from "react";
+import { AuthContext } from "./contexts/auth/AuthContext";
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
   
     return (
       <div className="App">
+
         <AuthProvider>
           <RouterProvider router={router} />
         </AuthProvider>      

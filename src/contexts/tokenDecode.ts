@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode";
 
-interface DecodedToken {
+export interface DecodedToken {
   [key: string]: any;
 }
 
