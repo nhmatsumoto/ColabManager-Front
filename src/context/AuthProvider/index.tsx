@@ -8,12 +8,11 @@ export const AuthProvider = ({ children } : IAuthProvider) => {
 
     const [user, setUser] = useState<IUser | null>();
 
-
     useEffect(() => {
         const user = getUserCookies();
 
         if(user) {
-            // setUserCookies(user.accessToken, user.refreshToken);
+            setUserCookies(user.accessToken, user.refreshToken);
         }
 
     }, []) 
