@@ -1,9 +1,7 @@
 import { Api } from "../../services/api";
 import { getCookie, setCookie } from "typescript-cookie";
 
-
-
-export function setUserCookies(accessToken: string, refreshToken: string) {
+export function setUserCookies(accessToken: string, refreshToken: string){
 
     //1 hora.
     const expiresDate = new Date(Date.now() + 60 * 60 * 1000);
@@ -25,6 +23,8 @@ export function getUserCookies(){
         accessToken: token,
         refreshToken: refresh,
     }
+
+    console.log("user", user);
     
     if(!user){  
         return null;
@@ -36,10 +36,9 @@ export function getUserCookies(){
 export async function LoginRequest(username: string, password: string){
     try {
 
-    const request = await Api.post('/auth/login', { username, password })
-    
-    return request.data;
-
+        const request = await Api.post('/auth/login', { username, password })
+        return request.data.value;
+        
     }catch(error){
         return null;    
     }

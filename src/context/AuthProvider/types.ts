@@ -10,10 +10,8 @@ export type ILoginRequest = {
 }
 
 export interface IContext extends IUser {
-
     authenticate: (username: string, passwprd: string) => Promise<void>;
     logOut: () => void;
-
 }
 
 export interface IAuthProvider {

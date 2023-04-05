@@ -13,7 +13,7 @@ export const AuthProvider = ({ children } : IAuthProvider) => {
         const user = getUserCookies();
 
         if(user) {
-            setUserCookies(user.accessToken, user.refreshToken);
+            // setUserCookies(user.accessToken, user.refreshToken);
         }
 
     }, []) 
@@ -22,11 +22,17 @@ export const AuthProvider = ({ children } : IAuthProvider) => {
     async function authenticate(username: string, password: string) {
 
         const response = await LoginRequest(username, password);
-        const payload = {accessToken: response.accessToken, refreshToken: response.refreshToken, userId: response.userId }
 
-        setUser(payload);
+        if(response)
+        {
+            setUserCookies(response.accessToken, response.refreshToken);    
 
-        setUserCookies(payload.value.accessToken, payload.value.refreshToken);
+            setUser({
+                userId: response.userId,
+                accessToken: response.accessToken,
+                refreshToken: response.refreshToken 
+            })
+        }        
     }
 
     function logOut() {
