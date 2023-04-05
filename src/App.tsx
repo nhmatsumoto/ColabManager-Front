@@ -1,28 +1,33 @@
 
-
-import { AuthProvider } from "./context/authProvider"
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import Dashboard from "./pages/dashboard";
 import ErrorPage from "./error-page";
 import LoginPage from "./components/login";
-import ProtectedLayout from "./components/protectedLayout";
+import { AuthProvider } from "./contexts/auth/AuthProvider";
+import { RequireAuth } from "./contexts/auth/RequireAuth";
+import { HomePage } from "./pages/home/index";
+
 
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <LoginPage />,
+      element: <HomePage />,
       errorElement: <ErrorPage />
     },
     {
       path: "/login",
-      element: <LoginPage />
+      element: <LoginPage />,
     },
     {
-      path: "/dashboard",
-      element: <ProtectedLayout children={<Dashboard />} />
+      path: "/private",
+      element: <RequireAuth><Dashboard /></RequireAuth>
     },
+    // {
+    //   path: "/home",
+    //   element: <ProtectedLayout children={<Home />} />
+    // },
   ]);
   
     return (

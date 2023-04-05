@@ -1,9 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Loader from "../loader";
-import { ILoginRequest } from "../../context/authProvider/types";
-import { useAuth } from "../../context/authProvider/useAuth";
+import { AuthContext } from "../../contexts/auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const LoginSchema = Yup.object().shape({
@@ -13,17 +12,33 @@ const LoginSchema = Yup.object().shape({
 
 const LoginPage = () => {
 
-    const initialValues: ILoginRequest = { username: "", password: "" };
-    const [loader, setLoader] = useState(false);
-    const auth = useAuth();
+    const auth = useContext(AuthContext);
 
+    const initialValues = { username: "", password: "" };
+    const [loader, setLoader] = useState(false);
     const navigate = useNavigate();
+
     
-    const handleSubmit = async (values: ILoginRequest) => {
+    const handleSubmit = async (values : { username: string, password: string }) => {
 
         try {
             setLoader(true);
-            await auth.authenticate(values.username, values.password)
+
+            const isLogged = await auth.signin(values.username, values.password);
+            
+            console.log(">>>>>>>>>", isLogged)
+            
+
+            if(isLogged)
+            {
+                //usuário logado
+                navigate('/');
+
+            }else {
+                //usuário não logado
+                window.alert('Login não deu certo');
+            }
+
             setLoader(false);
 
         }catch (error) {

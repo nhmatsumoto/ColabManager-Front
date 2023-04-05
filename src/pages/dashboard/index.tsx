@@ -1,10 +1,14 @@
+import { useAuth } from "../../contexts/authProvider/useAuth";
 import "../../styles/dashboard.css"
 
 const Dashboard = () => {
 
+
+
     return (
         <>
-            <h1>DASHBOARd</h1>
+        <h1>Dashboard</h1>
+        <h2>Private page</h2>
         </>
     )
 
