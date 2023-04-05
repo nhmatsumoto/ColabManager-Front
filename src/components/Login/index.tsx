@@ -1,9 +1,9 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
-import Loader from "../Loader";
-import { ILoginRequest } from "../../context/AuthProvider/types";
-import { useAuth } from "../../context/AuthProvider/useAuth";
+import Loader from "../loader";
+import { ILoginRequest } from "../../context/authProvider/types";
+import { useAuth } from "../../context/authProvider/useAuth";
 import { useNavigate } from "react-router-dom";
 
 const LoginSchema = Yup.object().shape({
@@ -26,11 +26,8 @@ const LoginPage = () => {
             await auth.authenticate(values.username, values.password)
             setLoader(false);
 
-            navigate("/dashboard");
-
         }catch (error) {
-
-            console.log("DEU RUIM NO LOGIN", error.value)
+            console.error(error);
             setLoader(false);
         }
         

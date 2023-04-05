@@ -1,11 +1,11 @@
 
 
-import { AuthProvider } from "./context/AuthProvider"
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dashboard from "./pages/dashboard/Dashboard";
+import { AuthProvider } from "./context/authProvider"
+import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
+import Dashboard from "./pages/dashboard";
 import ErrorPage from "./error-page";
-import LoginPage from "./components/Login";
-import ProtectedLayout from "./components/ProtectedLayout";
+import LoginPage from "./components/login";
+import ProtectedLayout from "./components/protectedLayout";
 
 function App() {
 
