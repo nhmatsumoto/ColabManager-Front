@@ -1,20 +1,22 @@
 import { Api } from "../../services/api";
 import { getCookie, setCookie } from "typescript-cookie";
+import { decodeJwt, DecodedToken } from "./tokenDecode";
 
 export function setUserCookies(accessToken: string, refreshToken: string){
 
-    //1 hora.
-    const expiresDate = new Date(Date.now() + 60 * 60 * 1000);
+    const decoded: DecodedToken | null = decodeJwt(accessToken);
 
+    if (decoded) {
 
-    console.log("SET USER COOKIES", accessToken, "Refresh:", refreshToken)
+        const expiresDate = new Date(Date.now() + 60 * 60 * 1000); //1 hr
+        setCookie('jwt-access-token',  accessToken, { expires: expiresDate, sameSite: 'none', secure: true, path: '/' });
+        setCookie('jwt-refresh-token', refreshToken, { expires: expiresDate, sameSite: 'none', secure: true, path: '/' });
+        
+    } 
 
-    setCookie('jwt-access-token',  accessToken, { expires: expiresDate, sameSite: 'none', secure: true, path: '/' });
-    setCookie('jwt-refresh-token', refreshToken, { expires: expiresDate, sameSite: 'none', secure: true, path: '/' });
 }
 
 export function getUserCookies(){
-
 
     const token = getCookie('jwt-access-token');
     const refresh = getCookie('jwt-refresh-token');
@@ -38,7 +40,7 @@ export async function LoginRequest(username: string, password: string){
 
         const request = await Api.post('/auth/login', { username, password })
         return request.data.value;
-        
+
     }catch(error){
         return null;    
     }

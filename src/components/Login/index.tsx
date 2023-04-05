@@ -17,15 +17,16 @@ const LoginPage = () => {
     const [loader, setLoader] = useState(false);
     const auth = useAuth();
 
-    // const navigate = useNavigate();
-    // navigate("/dashboard");
-
+    const navigate = useNavigate();
+    
     const handleSubmit = async (values: ILoginRequest) => {
 
         try {
             setLoader(true);
             await auth.authenticate(values.username, values.password)
             setLoader(false);
+
+            navigate("/dashboard");
 
         }catch (error) {
 

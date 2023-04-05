@@ -1,12 +1,10 @@
-import { Cookies, useCookies } from "react-cookie";
+import "../../styles/dashboard.css"
 
 const Dashboard = () => {
 
-    
-
     return (
         <>
-            <h1>DASHBOARD</h1>
+            <h1>DASHBOARd</h1>
         </>
     )
 
