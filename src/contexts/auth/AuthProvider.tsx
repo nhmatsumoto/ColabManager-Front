@@ -35,13 +35,15 @@ export const AuthProvider = ({children} : { children:JSX.Element}) => {
 
         const data = await api.signin(username, password);
 
-        if(data.value.user && data.value.accessToken)
+        console.log(data);
+
+        if(data.user && data.accessToken)
         {
             setUser(data.user);
 
             const expiresDate = new Date(Date.now() + 60 * 60 * 1000); //1 hr
-            setCookie('jwt-access-token',  data.value.accessToken, { expires: expiresDate, sameSite: 'none', secure: true, path: '/' });
-            setCookie('jwt-refresh-token', data.value.refreshToken, { expires: expiresDate, sameSite: 'none', secure: true, path: '/' });
+            setCookie('jwt-access-token',  data.accessToken, { expires: expiresDate, sameSite: 'none', secure: true, path: '/' });
+            setCookie('jwt-refresh-token', data.refreshToken, { expires: expiresDate, sameSite: 'none', secure: true, path: '/' });
 
             return true;
         }

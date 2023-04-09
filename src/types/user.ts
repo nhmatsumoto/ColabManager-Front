@@ -2,5 +2,6 @@ export type User = {
     id: number;
     name: string;
     email: string;
-    username: string;
+    accessToken: string;
+    refreshToken: string;
 }
