@@ -17,8 +17,6 @@ const LoginPage = () => {
     const initialValues = { username: "", password: "" };
     const [loader, setLoader] = useState(false);
     
-
-    
     const handleSubmit = async (values : { username: string, password: string }) => {
 
         try {
@@ -26,17 +24,15 @@ const LoginPage = () => {
 
             const isLogged = await auth.signin(values.username, values.password);
             
-            console.log(">>>>>>>>>", isLogged)
-            
-
             if(isLogged)
             {
                 setLoader(false);
 
-                //usuário logado
+                //redireciona usuário para componente Privado
                 return redirect('/private')
 
             }else {
+
                 //usuário não logado
                 setLoader(false);
                 window.alert('Login não deu certo');
