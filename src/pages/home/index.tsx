@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "../../styles/dashboard.css"
 
 export const HomePage = () => {
@@ -5,7 +6,8 @@ export const HomePage = () => {
     return (
         <>
             <h1>Home page</h1>
-            <h2>Public page</h2>
+            <hr />
+            <Link to={"/login"}> Login</Link>
         </>
     )
 

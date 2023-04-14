@@ -20,23 +20,44 @@ function App() {
     {
       path: "/login",
       element: <LoginPage />,
+      errorElement: <ErrorPage />
     },
     {
       path: "/private",
-      element: <RequireAuth><Dashboard /></RequireAuth>
+      element: (
+        <RequireAuth>
+          <>
+            <hr />
+            <hr />
+            <hr />
+            <hr />
+            <hr />
+            <hr />
+          </>
+        </RequireAuth>
+      ),
+      errorElement: <ErrorPage />,
     },
-    // {
-    //   path: "/home",
-    //   element: <ProtectedLayout children={<Home />} />
-    // },
   ]);
   
     return (
       <div className="App">
-
-        <AuthProvider>
-          <RouterProvider router={router} />
-        </AuthProvider>      
+        <section className="vh-100 gradient-custom">
+          <div className="container py-5 h-100">
+              <div className="row d-flex justify-content-center align-items-center h-100">
+                  <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+                      <div className="card bg-dark text-white">
+                          <div className="card-body p-5 text-center">
+                              <div className="mb-md-5 mt-md-4 pb-5"></div>
+                                <AuthProvider>
+                                  <RouterProvider router={router} />
+                                </AuthProvider>  
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>    
       </div>
     )
 }

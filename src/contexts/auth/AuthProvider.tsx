@@ -33,8 +33,6 @@ export const AuthProvider = ({children} : { children:JSX.Element}) => {
 
         const data = await api.signin(username, password);
 
-        console.log(data);
-
         if(data.user && data.accessToken)
         {
             setUser(data.user);
