@@ -3,7 +3,8 @@ import * as Yup from "yup";
 import { useContext, useState } from "react";
 import Loader from "../loader";
 import { AuthContext } from "../../contexts/auth/AuthContext";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
+
 
 const LoginSchema = Yup.object().shape({
     username: Yup.string().required("O campo usuário é obrigatório"),
@@ -13,6 +14,8 @@ const LoginSchema = Yup.object().shape({
 const LoginPage = () => {
 
     const auth = useContext(AuthContext);
+    const navigate = useNavigate();
+
 
     const initialValues = { username: "", password: "" };
     const [loader, setLoader] = useState(false);
@@ -29,7 +32,7 @@ const LoginPage = () => {
                 setLoader(false);
 
                 //redireciona usuário para componente Privado
-                return redirect('/private')
+                navigate('/private')
 
             }else {
 

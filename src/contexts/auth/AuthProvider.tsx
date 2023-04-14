@@ -9,7 +9,6 @@ export const AuthProvider = ({children} : { children:JSX.Element}) => {
     const [user, setUser] = useState<User | null>(null);
     const api = useApi();
 
-
     useEffect(() => {
 
         const validateToken = async () => {
@@ -17,9 +16,7 @@ export const AuthProvider = ({children} : { children:JSX.Element}) => {
             const cookieData = getCookie('jwt-access-token');
 
             if(cookieData){
-                
-                //vai até a api validar token
-                //retorna dados do usuário
+
                 const data = await api.validateToken(cookieData);
                 
                 if(data.user) {
@@ -29,6 +26,7 @@ export const AuthProvider = ({children} : { children:JSX.Element}) => {
         }
 
         validateToken();
+        
     }, [api])
 
     const signin = async (username: string, password: string) => {

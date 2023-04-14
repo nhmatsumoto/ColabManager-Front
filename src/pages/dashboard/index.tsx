@@ -1,19 +1,16 @@
 import { useContext } from "react";
 import "../../styles/dashboard.css"
 import { AuthContext } from "../../contexts/auth/AuthContext";
+import { useApi } from "../../hooks/useApi";
 
-const Dashboard = () => {
+const Dashboard = async () => {
 
     const auth = useContext(AuthContext);
+    const api = useApi();
 
     return (
-        <>
-            <h1>Dashboard</h1>
-            <h2>Private page</h2>
-            Olá: {auth.user?.name}
-        </>
+        <>Dashboard page</>
     )
-
 }
 
 export default Dashboard;
