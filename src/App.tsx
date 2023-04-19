@@ -24,14 +24,7 @@ function App() {
       path: "/private",
       element: (
         <RequireAuth>
-          <>
-            <hr />
-            <hr />
-            <hr />
-            <hr />
-            <hr />
-            <hr />
-          </>
+          <Dashboard />
         </RequireAuth>
       ),
       errorElement: <ErrorPage />,
