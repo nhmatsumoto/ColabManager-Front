@@ -4,6 +4,29 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f8f8f8;
+}
+
+/* Estilo para a barra de navegação */
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #dddddd;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.nav-link {
+    color: #666666;
+    font-weight: bold;
+}
+
 .card {
     border-radius: 1rem;
 }
@@ -17,4 +40,50 @@
     
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
-    }
+}
+
+.intro-banner {
+    background-size: cover;
+    background-color: #FFD93D;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo para o título da página */
+.title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Estilo para o subtítulo da página */
+.subtitle {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+/* Estilo para o botão de CTA */
+.cta-button {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 30px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+}
+
+
