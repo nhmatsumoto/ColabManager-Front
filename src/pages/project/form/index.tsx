@@ -1,10 +1,6 @@
-import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-
-const api = axios.create({
-    baseURL: 'http://localhost:5247'
-});
+import { projectFetch } from "../../../axios/config";
 
 interface RegisterProjectFormData {
     projectName: string,
@@ -23,21 +19,22 @@ export const ProjectForm = () => {
         projectDescription: ""
     };
 
-    const headers = {
-        "Content-Type": "text/json", 
-    };
-
     const handleSubmit = async (values: RegisterProjectFormData) => {
 
         const request = {
-            projectName: values.projectName,
-            projectDescription: values.projectDescription
+            Name: values.projectName,
+            Description: values.projectDescription
         };
 
-        const response = await api.post('/api/project', request, {
-            headers: headers
-        });
-        return response.data;
+        console.log("request:", request)
+
+        try {
+            const payload = await projectFetch.post('/project', request);
+            return payload.data;
+
+        }catch(ex){
+            console.log(ex);
+        }
     };
   
     return (

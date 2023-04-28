@@ -15,10 +15,12 @@ const MeuComponente: React.FC = () => {
 
   return (
     <div>
-      <button onClick={abrirModal}>Abrir Modal</button>
+      <button onClick={abrirModal}>
+        teste
+      </button>
       <Modal isOpen={modalAberto} onRequestClose={fecharModal}>
-        <h2>Título do Modal</h2>
-        <p>Conteúdo do Modal</p>
+        <h2>TESTE Título  Modal</h2>
+        <p>Conteúdo Modal</p>
 
         <a href="#" onClick={fecharModal}>Fechar</a>
       </Modal>
