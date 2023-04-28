@@ -2,7 +2,7 @@ import axios from "axios";
 import  { useEffect, useState } from "react";
 import Loader from "../../../components/loader";
 import { Button } from "../../../components/button";
-import { ModalViewProject } from "../modal/viewmodal";
+import MeuComponente from "../modal/viewmodal";
 
 interface Project {
 
@@ -21,7 +21,16 @@ interface Project {
 export const ProjectList = () => {
 
   const [projects, setProjects] = useState<Project[]>([]);
-  
+  const [modalAberto, setModalAberto] = useState(false);
+
+  const abrirModal = () => {
+    setModalAberto(true);
+  };
+
+  const fecharModal = () => {
+    setModalAberto(false);
+  };
+
 
   const getProjects = async () => {
     
@@ -97,7 +106,7 @@ export const ProjectList = () => {
           </tbody>
       </table>
 
-      <ModalViewProject view={true}/>
+      <MeuComponente />
     </>
   );
 };
