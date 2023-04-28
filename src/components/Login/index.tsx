@@ -6,8 +6,8 @@ import { AuthContext } from "../../contexts/auth/AuthContext";
 
 
 const LoginSchema = Yup.object().shape({
-    username: Yup.string().required("O campo usuário é obrigatório"),
-    password: Yup.string().required("O campo Senha é obrigatória"),
+    // username: Yup.string().required("O campo usuário é obrigatório"),
+    // password: Yup.string().required("O campo Senha é obrigatória"),
 });
 
 const LoginPage = () => {
@@ -51,14 +51,14 @@ const LoginPage = () => {
                     <Form> 
                     
                         <div className="form-outline form-white mb-4">
-                            <Field className="form-control form-control-lg" type="text" name="username" id="username" placeholder="Usuário"/>
+                            <label htmlFor="username">Usuário</label>
+                            <Field className="form-control" type="text" name="username" id="username" placeholder="Usuário"/>
                             <ErrorMessage name="username" component="div" />
                         </div>
 
-
                         <div className="form-group">
-                        
-                            <Field className="form-control form-control-lg" type="password" name="password" id="password" placeholder="Senha"/>
+                            <label htmlFor="password">Senha</label>
+                            <Field className="form-control" type="password" name="password" id="password" placeholder="Senha"/>
                             <ErrorMessage name="password" component="div" />
                         </div>
 
@@ -70,7 +70,7 @@ const LoginPage = () => {
                             )
                         }
                         
-                        <button className="btn btn-outline-light btn-lg px-5" type="submit"  disabled={isSubmitting}>Login</button>
+                        <button className="btn btn-info text-white" type="submit"  disabled={isSubmitting}>Login</button>
                     
                     </Form>
                 )}

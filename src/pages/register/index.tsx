@@ -65,77 +65,60 @@ const RegisterPage = () => {
     };
   
     return (
-       <>
-            <section className="vh-100 gradient-custom">
-                <div className="container py-5 h-100">
-                    <div className="row d-flex justify-content-center align-items-center h-100">
-                    <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div className="card bg-dark text-white">
-                        <div className="card-body p-5 text-center">
-                            <div className="mb-md-5 mt-md-4 pb-5">
+        <Formik
+            initialValues={initialValues}
+            validationSchema={RegisterSchema}
+            onSubmit={handleSubmit}
+        >
+            {({ isSubmitting, values }) => (
+                <Form> 
 
-                                <Formik
-                                    initialValues={initialValues}
-                                    validationSchema={RegisterSchema}
-                                    onSubmit={handleSubmit}
-                                >
-                                    {({ isSubmitting, values }) => (
-                                    <Form> 
+                    <h2 className="fw-bold mb-2 text-uppercase">Cadastrar usuário</h2>
 
-                                        <h2 className="fw-bold mb-2 text-uppercase">Cadastre-se</h2>
-                                        <p className="text-white-50 mb-5">Insira suas informações para efetuar o cadastro</p>
-
-                                        <div className="form-outline form-white mb-4">
-                                            <Field className="form-control form-control-lg" type="text" name="fullName" id="fullName" placeholder="Nome completo"/>
-                                            <ErrorMessage name="fullName" component="div" />
-                                        </div>
-
-
-                                        <div className="form-outline form-white mb-4">
-                                            <Field className="form-control form-control-lg" type="email" name="email" id="email" placeholder="Email"/>
-                                            <ErrorMessage name="email" component="div" />
-                                        </div>
-
-                                        <div className="form-outline form-white mb-4">
-                                            <Field className="form-control form-control-lg" type="text" name="phone" id="phone" placeholder="Telefone"/>
-                                            <ErrorMessage name="phone" component="div" />
-                                        </div>
-
-                                        <div className="form-outline form-white mb-4">
-                                            <Field className="form-control form-control-lg" type="text" name="document" id="document" placeholder="Documento"/>
-                                            <ErrorMessage name="document" component="div" />
-                                        </div>
-
-                                        <div className="form-group">
-                                            <Field className="form-control form-control-lg" type="password" name="password" id="password" placeholder="Senha"/>
-                                            <ErrorMessage name="password" component="div" />
-                                        </div>
-
-                                        <div className="form-group">
-                                            <Field className="form-control form-control-lg" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirme a senha"/>
-                                            <ErrorMessage name="confirmPassword" component="div" />
-                                        </div>
-
-                                        <button className="btn btn-outline-light btn-lg px-5" type="submit" disabled={isSubmitting}>Login</button>
-                                    </Form>
-                                    )}
-                                </Formik>
-                            </div>
-
-                            <div>
-                                <p className="mb-0">
-                                    Ainda não tem uma conta?
-                                    <a href="#!" className="text-white-50 fw-bold">Cadastre-se</a>
-                                </p>
-                            </div>
-
-                        </div>
-                        </div>
+                    <div className="form-outline form-white mb-4">
+                        <label htmlFor="fullName">Nome completo</label>
+                        <Field className="form-control" type="text" name="fullName" id="fullName" placeholder="Nome completo"/>
+                        <ErrorMessage name="fullName" component="div" />
                     </div>
+
+
+                    <div className="form-outline form-white mb-4">
+                        <label htmlFor="email">Email</label>
+                        <Field className="form-control" type="email" name="email" id="email" placeholder="Email"/>
+                        <ErrorMessage name="email" component="div" />
                     </div>
-                </div>
-            </section>
-       </>
+
+                    <div className="form-outline form-white mb-4">
+                        <label htmlFor="phone">Telefone</label>
+                        <Field className="form-control" type="text" name="phone" id="phone" placeholder="Telefone"/>
+                        <ErrorMessage name="phone" component="div" />
+                    </div>
+
+                    <div className="form-outline form-white mb-4">
+                        <label htmlFor="document">Documento</label>
+                        <Field className="form-control" type="text" name="document" id="document" placeholder="Documento"/>
+                        <ErrorMessage name="document" component="div" />
+                    </div>
+
+                    <div className="form-group form-white mb-4">
+                        <label htmlFor="password">Senha</label>
+                        <Field className="form-control" type="password" name="password" id="password" placeholder="Senha"/>
+                        <ErrorMessage name="password" component="div" />
+                    </div>
+
+                    <div className="form-group form-white mb-4">
+                        <label htmlFor="confirmPassword">Confirme sua senha</label>
+                        <Field className="form-control" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirme a senha"/>
+                        <ErrorMessage name="confirmPassword" component="div" />
+                    </div>
+
+                    <div className="mt-5">
+                        <button className="btn btn-info text-white" type="submit" disabled={isSubmitting}>Cadastrar</button>
+                    </div>
+                    
+                </Form>
+            )}
+        </Formik>
     );
 }
 

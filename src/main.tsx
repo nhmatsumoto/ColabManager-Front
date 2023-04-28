@@ -5,8 +5,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./styles/global.css"
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { HomePage } from "./pages/home";
-import { ProjectPage } from "./pages/dashboard";
+import { ProjectForm } from "./pages/project/form/index";
 import LoginPage from "./components/login";
+import RegisterPage from "./pages/register";
+import { ProjectList } from "./pages/project/list";
 
 const router = createBrowserRouter([{
   element: <App />,
@@ -17,7 +19,15 @@ const router = createBrowserRouter([{
     },
     {
       path: '/novo-projeto',
-      element: <ProjectPage />
+      element: <ProjectForm />
+    },
+    {
+      path: '/listar-projetos',
+      element: <ProjectList />
+    },
+    {
+      path: '/novo-usuario',
+      element: <RegisterPage />
     },
     {
       path: '/login',
