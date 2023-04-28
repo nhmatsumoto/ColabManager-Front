@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom"
-import "../../styles/dashboard.css"
-import { Navbar } from "../../layout/Navbar"
+import './style.css'
 
 export const HomePage = () => {
 
     return (
         <>
-            <Navbar />
+           
             <section className="intro-banner">
                 <div className="container">
                     <h1 className="title">Bem-vindo à Calab Manager!</h1>
@@ -36,9 +35,7 @@ export const HomePage = () => {
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <Link to={"/login"}> Login</Link>
+            </section>            
         </>
     )
 

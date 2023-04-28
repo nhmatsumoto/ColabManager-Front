@@ -13,7 +13,13 @@ export const useApi = () => ({
     },
 
     signin: async (username: string, password: string) => {
-        const response = await api.post('/api/auth/login', {username, password});
+
+        const request = {
+            username: username,
+            password: password
+        };
+
+        const response = await api.post('/api/auth/login', request);
         return response.data;
     },
 

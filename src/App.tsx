@@ -1,41 +1,17 @@
 
-import { createBrowserRouter, RouterProvider, Link, NavLink } from "react-router-dom";
-import Dashboard from "./pages/dashboard";
-import ErrorPage from "./error-page";
-import LoginPage from "./components/login";
-import { AuthProvider } from "./contexts/auth/AuthProvider";
-import { RequireAuth } from "./contexts/auth/RequireAuth";
-import { HomePage } from "./pages/home/index";
+import { Outlet } from "react-router-dom";
+import { Navbar } from "./components/navbar";
 
 function App() {
 
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <HomePage />,
-      errorElement: <ErrorPage />
-    },
-    {
-      path: "/login",
-      element: <LoginPage />,
-      errorElement: <ErrorPage />
-    },
-    {
-      path: "/private",
-      element: (
-        <RequireAuth>
-          <Dashboard />
-        </RequireAuth>
-      ),
-      errorElement: <ErrorPage />,
-    },
-  ]);
-  
     return (
       <div className="App">
-         <AuthProvider>
-            <RouterProvider router={router} />
-        </AuthProvider>
+        <Navbar />
+    
+        <div className="container bg-light mt-5">
+          <Outlet />
+        </div>
+
       </div>
     )
 }

@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
 import LoginPage from "../../components/login";
-import { log } from "console";
 import { getCookie, removeCookie, setCookie } from "typescript-cookie";
 
 
