@@ -19,6 +19,8 @@ const MeuComponente: React.FC = () => {
       <Modal isOpen={modalAberto} onRequestClose={fecharModal}>
         <h2>Título do Modal</h2>
         <p>Conteúdo do Modal</p>
+
+        <a href="#" onClick={fecharModal}>Fechar</a>
       </Modal>
     </div>
   );
