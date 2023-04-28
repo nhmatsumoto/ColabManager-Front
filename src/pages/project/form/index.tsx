@@ -1,7 +1,6 @@
 import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import ProjectList from "../list";
 
 const api = axios.create({
     baseURL: 'http://localhost:5247'
