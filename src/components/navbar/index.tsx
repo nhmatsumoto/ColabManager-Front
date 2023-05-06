@@ -13,13 +13,16 @@ export const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link className="nav-link" to={'/novo-projeto'}>Novo Projeto</Link>
+                            <Link className="nav-link" to={'/novo/projeto'}>Novo Projeto</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to={"/novo-usuario"}>Novo Usuário</Link>
+                            <Link className="nav-link" to={"/novo/usuario"}>Novo Usuário</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to={"/listar-projetos"}>Listar Projetos</Link>
+                            <Link className="nav-link" to={"/listar/projetos"}>Listar Projetos</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to={"/listar/tarefas"}>Listar Tarefas</Link>
                         </li>
                     </ul>
 

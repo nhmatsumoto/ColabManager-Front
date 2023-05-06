@@ -1,38 +1,46 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import App from "./App"
-import "bootstrap/dist/css/bootstrap.css";
-import "./styles/global.css"
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { HomePage } from "./pages/home";
 import { ProjectForm } from "./pages/project/form/index";
 import LoginPage from "./components/login";
 import RegisterPage from "./pages/register";
 import { ProjectList } from "./pages/project/list";
+import "bootstrap/dist/css/bootstrap.css";
+import "./styles/global.css"
+import ErrorPage from "./error-page";
+import { DailyTask } from "./pages/dailytasks";
 
 const router = createBrowserRouter([{
   element: <App />,
-  children: [
+  errorElement: <ErrorPage />,
+  children:   [
     {
       path: '/',
       element: <HomePage />
     },
     {
-      path: '/novo-projeto',
+      path: '/novo/projeto',
       element: <ProjectForm />
     },
     {
-      path: '/listar-projetos',
+      path: '/novo/usuario',
+      element: <RegisterPage />
+    },
+    {
+      path: '/listar/projetos',
       element: <ProjectList />
     },
     {
-      path: '/novo-usuario',
-      element: <RegisterPage />
+      path: '/listar/tarefas',
+      element: <DailyTask />
     },
     {
       path: '/login',
       element: <LoginPage />
     },
+   
   ]  
 }]);
 

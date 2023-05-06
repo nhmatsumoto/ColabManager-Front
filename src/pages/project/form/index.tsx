@@ -1,6 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { projectFetch } from "../../../axios/config";
+import { colabManagerFetch } from "../../../axios/config";
 
 interface RegisterProjectFormData {
     projectName: string,
@@ -26,10 +26,8 @@ export const ProjectForm = () => {
             Description: values.projectDescription
         };
 
-        console.log("request:", request)
-
         try {
-            const payload = await projectFetch.post('/project', request);
+            const payload = await colabManagerFetch.post('/project', request);
             return payload.data;
 
         }catch(ex){
@@ -38,7 +36,6 @@ export const ProjectForm = () => {
     };
   
     return (
-        <div className="container">
             <Formik
                 initialValues={initialValues}
                 validationSchema={RegisterSchema}
@@ -65,6 +62,5 @@ export const ProjectForm = () => {
                     </Form>
                 )}
             </Formik>
-       </div>
     );
 }
